@@ -182,15 +182,67 @@ def simulate_one_new_problem(
 ---
 
 ## **3. Results & Interpretation**
+<img width="2126" height="1180" alt="image" src="https://github.com/user-attachments/assets/3a0fb5cf-ce14-4a90-900a-6171e22732da" />
+<img width="2126" height="1180" alt="image" src="https://github.com/user-attachments/assets/884a684d-4059-4dd4-876f-e79d2f8e869b" />
 
+### **3.1. Is the current selection strategy good enough? Is there a need for revising the selection strategy? How does the strategy affect the search time and gap between selected candidate to the best one?**
+
+***The classical strategy is not good enough and should be revised.***
+
+Across all pool sizes and acceptance thresholds, the classical strategy (**first_above_best_explored**) performs systematically worse than the two revised strategies:
+
+- It delivers lower success rates, especially when search time approaches 1.0.
+
+- It produces the largest gap to the best candidate, often selecting weak late-arriving candidates.
+
+- Its performance deteriorates sharply with longer search time, while the revised strategies remain stable.
+
+Both revised strategies—especially the rank-based rule—substantially improve success rates and keep the gap-to-best near zero, indicating a clear need to revise the selection rule.
+
+**Overall interpretation**
+
+The classical strategy was optimal for selecting the single best candidate, but with the new “good-enough” objective, it becomes too conservative and frequently ends up selecting late-arriving low-quality candidates.
+Thus, revising the strategy is necessary. Both revised strategies, especially the rank-based approach, significantly improve performance.
+
+### **3.2. How the acceptance threshold affects search time?**
+Across columns (1%, 5%, 10%), several patterns emerge:
+
+**(A) Higher k makes the problem easier**
+
+When k increases from 1% → 5% → 10%, all strategies show:
+
+- Higher success rates
+
+- Lower gap to the best candidate
+
+- Flatter curves (less sensitivity to search time)
+
+**(B) Rank-based strategy becomes nearly perfect**
+
+For k = 10%, rank-based success rates approach 1.0 across almost the entire search-time range in medium and large pools.
+
+**Interpretation**
+Relaxing the decision criterion (moving from "top 1%" to "top 10%") reduces risk and substantially boosts performance, but the relative ordering of the strategies remains the same:
+Rank-based > k-threshold > classical.
+
+### **3.3. How pool size (100, 500, 1000) influences these patterns?**
+
+- **Small pools (100)**: noisy, unstable, strategies look similar.
+
+- **Medium pools (500)**: clearer separation; rank-based begins to dominate.
+
+- **Large pools (1000)**: very strong patterns; rank-based achieves almost perfect success, while the classical strategy collapses near the end of the search.
+
+**Interpretation**
+
+Larger pools make exploration more informative, strategy performance more consistent and amplify the advantage of the revised strategies.
+The rank-based strategy scales best with pool size because it uses real-time updates, allowing it to adapt as information accumulates.
 
 ---
 
 ## **4. Discussion and Conclusion**
 
-Both models successfully demonstrated core principles of **quantitative risk analysis**:
-
-1. **Monte Carlo simulation** reveals a range of possible outcomes, not single-point forecasts.
-2. **Normality assumption limitations:** Fat tails and correlation clustering make real risks heavier than simulated ones.
-3. **Volatility dynamics matter:** The J.P. Morgan’s RiskMetrics framework better mirrors observed market behavior, though still underestimates extreme risk events.
-4. **Diversification effect:** The portfolio shows smoother and more robust performance than individual assets, validating the foundational principle of risk pooling.
+- When the goal changes from selecting the absolute best to selecting a “good enough” candidate, the **classical strategy becomes inefficient**.
+- The k-threshold and rank-based strategies align better with the revised objective, especially **rank-based delivers consistently high success rates and minimal gap**, thanks to its real-time updating.
+- **Higher acceptance thresholds (k%) make the problem easier**, with all strategies improving, and the rank-based method approaching near-perfect performance.
+- Larger pool sizes reduce randomness and **magnify differences** between strategies: adaptive methods improve, while the classical strategy deteriorates.
