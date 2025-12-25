@@ -1,5 +1,3 @@
-# Secretary-Problem---New-Approach
-
 *This repository was part of the assignment for Data-driven Leadership course in Business Intelligence master program.*
 
 ## **1. Problem Introduction**
