@@ -2,23 +2,23 @@
 
 ## **1. Problem Introduction**
 
-The classical Secretary Problem illustrates how to balance exploration (observing early candidates) and exploitation (deciding when to stop and select). Under the traditional objective — selecting the best candidate — the optimal strategy is to explore about the first one third of candidates and then exploit on the first thereafter arriving outdoing the best candidate in the explored pool. This means that in expectation the selected and best candidate will arrive two thirds into the pool.
+The classical Secretary Problem illustrates how to balance exploration (observing early candidates) and exploitation (deciding when to stop and select). Under the traditional objective — **selecting the best candidate** — the optimal strategy is to explore about the first one third of candidates and then exploit on the first thereafter arriving outdoing the best candidate in the explored pool. This means that in expectation the selected and best candidate will arrive two thirds into the pool.
 
 However, this idealized setup does not fully match realistic decision-making. In practice, selecting the absolute best is rarely necessary; candidates ranked second, third, or fourth may be practically interchangeable. In large pools, top candidates tend to be very similar in quality, making the strict best-choice objective unnecessarily rigid.
 
-This assignment shifts the objective from selecting the single best candidate to selecting a “good enough” candidate, such as someone in the top 1%, 5%, or 10%.
+This assignment shifts the objective from selecting the single best candidate to **selecting a “good enough” candidate**, such as someone in the **top 1%, 5%, or 10%**.
 
 The simulation study investigates:
 
-- Whether the classical exploration strategy should be revised under a good-enough objective.
+- Whether the classical **exploration strategy** should be revised under a good-enough objective.
 
-- How the acceptance threshold affects search time.
+- How the acceptance threshold affects **search time**.
 
-- How far the selected candidate falls short of the true best.
+- How far the **selected candidate falls short of the true best**.
 
-- How pool size (100, 500, 1000) influences these patterns.
+- How **pool size** (100, 500, 1000) influences these patterns.
 
-Overall, the goal is to understand how optimal stopping behavior changes when the decision criterion becomes more flexible and realistic.
+Overall, the goal is to understand **how optimal stopping behavior changes** when the decision criterion becomes more flexible and realistic.
 
 ---
 ## **2. Step-by-Step Solution and Results**
