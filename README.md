@@ -29,21 +29,21 @@ Overall, the goal is to understand **how optimal stopping behavior changes** whe
 
 - Observe the initial exploration phase (fraction of the pool).
 - Select the first candidate who exceeds the best quality observed during exploration.
-<img width="944" height="524" alt="image" src="https://github.com/user-attachments/assets/53b55115-035e-4545-9bb7-0a8dcde7fa85" />
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/53b55115-035e-4545-9bb7-0a8dcde7fa85" />
 
 
 **Top-k Threshold Rule**
 
 - Exploration data are used to estimate the empirical k-percentile threshold (e.g., top 1%, 5%, 10%).
 - Select the first candidate whose quality exceeds the estimated top-k threshold.
-<img width="932" height="533" alt="image" src="https://github.com/user-attachments/assets/692382b1-ff62-49f3-8031-2e3dd718efee" />
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/692382b1-ff62-49f3-8031-2e3dd718efee" />
 
 **Rank-Based Rule**
 
 - Observe the initial exploration pool.
 - When each new candidate appears, their quality is compared against all candidates observed so far, and a real-time rank is computed.
 - Select the first candidate whose rank places within the top-k percent of the observed set.
-<img width="939" height="566" alt="image" src="https://github.com/user-attachments/assets/40bae1ab-101a-4665-99db-e07bf611de86" />
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/40bae1ab-101a-4665-99db-e07bf611de86" />
 
 ---
 
