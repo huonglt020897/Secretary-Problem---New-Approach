@@ -1,5 +1,7 @@
 # Secretary-Problem---New-Approach
 
+*This repository was part of the assignment for Data-driven Leadership course in Business Intelligence master program.*
+
 ## **1. Problem Introduction**
 
 The classical Secretary Problem illustrates how to balance exploration (observing early candidates) and exploitation (deciding when to stop and select). Under the traditional objective — **selecting the best candidate** — the optimal strategy is to explore about the first one third of candidates and then exploit on the first thereafter arriving outdoing the best candidate in the explored pool. This means that in expectation the selected and best candidate will arrive two thirds into the pool.
