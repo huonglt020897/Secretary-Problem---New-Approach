@@ -21,43 +21,33 @@ The simulation study investigates:
 Overall, the goal is to understand how optimal stopping behavior changes when the decision criterion becomes more flexible and realistic.
 
 ---
+## **2. Step-by-Step Solution and Results**
 
-## **2. Methodology**
-
-This study follows a four-step approach:
-
-1. **Define selection method**: Three selection rules were implemented to determine when to stop and select a candidate: ***Best-Explored Rule***, ***Top-k Threshold Rule***, ***Rank-Based Rule***.
-2. **Define performance metrics to measure performance**: To evaluate strategy effectiveness, several performance metrics were computed for each simulation run, namely ***success rate***, ***gap to best candidate***, ***search time***, etc.
-3. **Build a core simulation function** A core function was developed to simulate the secretary problem under different selection schemes.
-4. **Run the simulation across different parameters**: The simulation was executed across a matrix of parameters (***pool size***, ***acceptance criteria***, ***exploration fractions***, ***selection method***)
-    
-    Simulation Repetitions: 1,000 runs per configuration
-
----
-## **3. Step-by-Step Description and Results**
-
-### **3.1 Define selection method**
+### **2.1 Define selection method**
 
 **Best-Explored Rule** (same as classic problem)
 
 - Observe the initial exploration phase (fraction of the pool).
 - Select the first candidate who exceeds the best quality observed during exploration.
+<img width="944" height="524" alt="image" src="https://github.com/user-attachments/assets/53b55115-035e-4545-9bb7-0a8dcde7fa85" />
 
 
 **Top-k Threshold Rule**
 
 - Exploration data are used to estimate the empirical k-percentile threshold (e.g., top 1%, 5%, 10%).
 - Select the first candidate whose quality exceeds the estimated top-k threshold.
+<img width="932" height="533" alt="image" src="https://github.com/user-attachments/assets/692382b1-ff62-49f3-8031-2e3dd718efee" />
 
 **Rank-Based Rule**
 
 - Observe the initial exploration pool.
 - When each new candidate appears, their quality is compared against all candidates observed so far, and a real-time rank is computed.
 - Select the first candidate whose rank places within the top-k percent of the observed set.
+<img width="939" height="566" alt="image" src="https://github.com/user-attachments/assets/40bae1ab-101a-4665-99db-e07bf611de86" />
 
 ---
 
-### **3.2 Define performance metrics to measure performance**
+### **2.2 Define performance metrics to measure performance**
 
 To evaluate strategy effectiveness, several performance metrics were computed for each simulation run:
 
@@ -74,7 +64,7 @@ To evaluate strategy effectiveness, several performance metrics were computed fo
 
 ---
 
-### **3.3 Build a core simulation function**
+### **2.3 Build a core simulation function**
 
 - Create a function with 4 parameters
 ```
@@ -177,7 +167,7 @@ def simulate_one_new_problem(
 
 
 ---
-### **3.4 Run the simulation across different parameters**
+### **2.4 Run the simulation across different parameters**
 
 1000 simulations were computed for each configuration, details as below:
 - Total number of candidates: ***num_candidates = [100, 500, 1000]***
@@ -189,39 +179,14 @@ def simulate_one_new_problem(
   - ***'first_above_k_threshold'***
 
 
-**Key code function**:
-```
-def run_new_simulations(
-    num_simulations=1000, 
-    num_candidates=[100], 
-    strategy_fraction=[1/np.e], 
-    k_percent=[0.01], 
-    selection_method='first_above_best_explored', seed=None):
-    if seed is not None:
-        np.random.seed(seed)
-    else:
-      np.random.seed(11072003)
-    all_results = pd.DataFrame()
-    for _ in range(num_simulations):
-        for num_candidate in num_candidates:
-            for frac in strategy_fraction:
-                for k in k_percent:
-                    result = simulate_one_new_problem(num_candidate, frac, k, selection_method)
-                    result['strategy_fraction'] = frac
-                    result['pool_size'] = num_candidate
-                    result['k_percent'] = k
-                    result['selection_method'] = selection_method
-                    all_results = pd.concat([all_results, result], ignore_index=True)
-    return all_results
-```
 ---
 
-## **4. Results & Interpretation**
+## **3. Results & Interpretation**
 
 
 ---
 
-## **5. Discussion and Conclusion**
+## **4. Discussion and Conclusion**
 
 Both models successfully demonstrated core principles of **quantitative risk analysis**:
 
