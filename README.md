@@ -100,7 +100,9 @@ def simulate_one_new_problem(
 ```
 
 - Apply the chosen selection rule in the exploitation phase.
-  - Top-k Threshold Rule
+
+Top-k Threshold Rule
+
 ```
     if selection_method == 'first_above_k_threshold':
         estimated_k_threshold = np.quantile(explored_scores, 1 - k_percent)
@@ -111,7 +113,8 @@ def simulate_one_new_problem(
                 selected_candidate = i
                 break
 ```
-  - Rank-Based Rule
+
+Rank-Based Rule
 ```
     elif selection_method == 'rank-based':
         best_explored = np.max(explored_scores)
@@ -129,7 +132,9 @@ def simulate_one_new_problem(
                 selected_candidate = i
                 break
 ```
-  - Best-Explored Rule
+
+Best-Explored Rule
+
 ```
     else:  # 'first_above_best_explored' - original strategy
         best_explored = np.max(explored_scores)
@@ -183,7 +188,8 @@ def simulate_one_new_problem(
 
 ## **3. Results & Interpretation**
 <img width="2126" height="1180" alt="image" src="https://github.com/user-attachments/assets/3a0fb5cf-ce14-4a90-900a-6171e22732da" />
-<img width="2126" height="1180" alt="image" src="https://github.com/user-attachments/assets/884a684d-4059-4dd4-876f-e79d2f8e869b" />
+
+<img width="2126" height="1180" alt="image" src="https://github.com/user-attachments/assets/116f2f7d-d5ba-48c4-b657-ed840ee05661" />
 
 ### **3.1. Is the current selection strategy good enough? Is there a need for revising the selection strategy? How does the strategy affect the search time and gap between selected candidate to the best one?**
 
